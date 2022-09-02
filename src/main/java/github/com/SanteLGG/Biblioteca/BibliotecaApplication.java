@@ -11,15 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class BibliotecaApplication {
 
-	@Autowired
-	@Qualifier("applicationName")
-	private String applicaitonName;
-
-	@GetMapping("/hello")
-	public String HelloWorld(){
-		return applicaitonName;
-	}
-
 	public static void main(String[] args) {
 		SpringApplication.run(BibliotecaApplication.class, args);
 	}
