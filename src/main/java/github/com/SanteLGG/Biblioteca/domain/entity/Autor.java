@@ -15,19 +15,6 @@ public class Autor {
     @NotNull
     private String nome;
 
-    @NotNull
-    @ManyToOne
-    @JoinColumn(name = "id_livro")
-    private Livro livro;
-
-    public Livro getLivro() {
-        return livro;
-    }
-
-    public void setLivro(Livro livro) {
-        this.livro = livro;
-    }
-
     //getter and setters
     public Long getCodigo() {
         return id;
