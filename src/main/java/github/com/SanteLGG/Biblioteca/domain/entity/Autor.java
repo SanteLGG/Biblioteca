@@ -15,6 +15,19 @@ public class Autor {
     @NotNull
     private String nome;
 
+    @NotNull
+    @ManyToOne
+    @JoinColumn(name = "id_livro")
+    private Livro livro;
+
+    public Livro getLivro() {
+        return livro;
+    }
+
+    public void setLivro(Livro livro) {
+        this.livro = livro;
+    }
+
     //getter and setters
     public Long getCodigo() {
         return id;
@@ -30,4 +43,10 @@ public class Autor {
         this.nome = nome;
     }
 
+    public Long getId() {
+        return id;
+    }
+    public void setId(Long id) {
+        this.id = id;
+    }
 }
