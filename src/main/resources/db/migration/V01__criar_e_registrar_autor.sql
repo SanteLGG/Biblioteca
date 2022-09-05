@@ -1,9 +1,9 @@
 CREATE TABLE autor (
     id SERIAL PRIMARY KEY,
     nome VARCHAR(50) NOT NULL,
-    id_livro INT
+    livro_id SERIAL NOT NULL
 );
 
-INSERT INTO autor (nome) VALUES ('Stephen Hawking');
-INSERT INTO autor (nome) VALUES ('Michael Faraday');
+INSERT INTO autor (nome, livro_id) VALUES ('Stephen Hawking', 2);
+INSERT INTO autor (nome, livro_id) VALUES ('Michael Faraday', 1);
 

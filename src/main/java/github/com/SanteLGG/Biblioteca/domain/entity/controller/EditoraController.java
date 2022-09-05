@@ -25,7 +25,7 @@ public class EditoraController {
     }
 
     @GetMapping("/{id}") //Listar as editoras cadastradas no banco de dados pelo ID
-    public ResponseEntity<Editora> buscarPeloCodigo(@PathVariable Long id){
+    public ResponseEntity<Editora> buscarPeloID(@PathVariable Long id){
         if(editoraRepository != null){
             return ResponseEntity.of(editoraRepository.findById(id));
         }

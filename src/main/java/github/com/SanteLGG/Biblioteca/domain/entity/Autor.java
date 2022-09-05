@@ -1,8 +1,11 @@
 package github.com.SanteLGG.Biblioteca.domain.entity;
 
 import com.sun.istack.NotNull;
+import org.springframework.data.annotation.Reference;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "autor", schema = "biblioteca")
@@ -14,6 +17,9 @@ public class Autor {
 
     @NotNull
     private String nome;
+
+    @NotNull
+    private Long livro_id;
 
     //getter and setters
     public Long getCodigo() {
@@ -36,4 +42,12 @@ public class Autor {
     public void setId(Long id) {
         this.id = id;
     }
+
+    public Long getLivro_id() {
+        return livro_id;
+    }
+    public void setLivro_id(Long livro_id) {
+        this.livro_id = livro_id;
+    }
+
 }
