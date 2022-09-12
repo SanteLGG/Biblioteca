@@ -5,10 +5,7 @@ import github.com.SanteLGG.Biblioteca.domain.entity.Editora;
 import github.com.SanteLGG.Biblioteca.domain.entity.repository.EditoraRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -32,4 +29,18 @@ public class EditoraController {
         return ResponseEntity.notFound().build();
     }
 
+    @PostMapping//cadastrar editora
+    public ResponseEntity<Editora> salvarEditora (@RequestBody Editora editora){
+        Editora editoraSalva = editoraRepository.save(editora);
+
+        return ResponseEntity.ok(editoraSalva);
+    }
+    @DeleteMapping("/deletar/{id}")//deletar Editora
+    public ResponseEntity<Editora> deletarEditora(@PathVariable Long id){
+        if(editoraRepository.existsById(id)){
+            editoraRepository.deleteById(id);
+            return ResponseEntity.ok().build();
+        }
+        return ResponseEntity.notFound().build();
+    }
 }

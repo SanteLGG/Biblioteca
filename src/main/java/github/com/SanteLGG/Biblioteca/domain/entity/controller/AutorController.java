@@ -6,11 +6,9 @@ import github.com.SanteLGG.Biblioteca.domain.entity.repository.AutorRepository;
 import github.com.SanteLGG.Biblioteca.domain.entity.repository.LivroRepository;
 import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -35,4 +33,19 @@ public class AutorController {
         return ResponseEntity.notFound().build();
     }
 
+    @PostMapping//cadastrar autor
+    public ResponseEntity<Autor> salvarAutor(@RequestBody Autor autor){
+        Autor autorSalvo = autorRepository.save(autor);
+
+        return ResponseEntity.ok(autorSalvo);
+    }
+
+    @DeleteMapping("/deletar/{id}")//deletar autor
+    public ResponseEntity<Autor> deletarAutor(@PathVariable Long id){
+        if(autorRepository.existsById(id)){
+            autorRepository.deleteById(id);
+            return ResponseEntity.ok().build();
+        }
+        return ResponseEntity.notFound().build();
+    }
 }
