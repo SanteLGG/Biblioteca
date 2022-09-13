@@ -1,12 +1,8 @@
 package github.com.SanteLGG.Biblioteca.domain.entity.controller;
 
 import github.com.SanteLGG.Biblioteca.domain.entity.Autor;
-import github.com.SanteLGG.Biblioteca.domain.entity.Livro;
 import github.com.SanteLGG.Biblioteca.domain.entity.repository.AutorRepository;
-import github.com.SanteLGG.Biblioteca.domain.entity.repository.LivroRepository;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -47,5 +43,15 @@ public class AutorController {
             return ResponseEntity.ok().build();
         }
         return ResponseEntity.notFound().build();
+    }
+
+    @PutMapping("/atualizar/{id}")
+    @ResponseBody
+    public ResponseEntity atualizarAutor(@PathVariable Long id, @RequestBody Autor autor){
+        return autorRepository.findById(id).map(autorExistente -> {
+            autor.setId(autorExistente.getId());
+            autorRepository.save(autor);
+            return ResponseEntity.ok().build();
+           }).orElseGet( () -> ResponseEntity.notFound().build());
     }
 }
