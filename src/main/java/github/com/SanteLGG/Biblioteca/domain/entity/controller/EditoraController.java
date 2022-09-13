@@ -35,6 +35,7 @@ public class EditoraController {
 
         return ResponseEntity.ok(editoraSalva);
     }
+
     @DeleteMapping("/deletar/{id}")//deletar Editora
     public ResponseEntity<Editora> deletarEditora(@PathVariable Long id){
         if(editoraRepository.existsById(id)){
