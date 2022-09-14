@@ -21,12 +21,11 @@ public class Livro {
     @NotNull
     private Long paginas;
 
-    @NotNull
     @ManyToOne
     @JoinColumn(name = "id_autor")
     private Autor autor;
 
-    @NotNull
+
     @ManyToOne
     @JoinColumn(name = "id_editora")
     private Editora editora;

@@ -3,6 +3,8 @@ package github.com.SanteLGG.Biblioteca.domain.entity.controller;
 import github.com.SanteLGG.Biblioteca.domain.entity.Autor;
 import github.com.SanteLGG.Biblioteca.domain.entity.repository.AutorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -45,7 +47,7 @@ public class AutorController {
         return ResponseEntity.notFound().build();
     }
 
-    @PutMapping("/atualizar/{id}")
+    @PutMapping("/atualizar/{id}") //atualizar dados no bancos e dados
     @ResponseBody
     public ResponseEntity atualizarAutor(@PathVariable Long id, @RequestBody Autor autor){
         return autorRepository.findById(id).map(autorExistente -> {
@@ -54,4 +56,14 @@ public class AutorController {
             return ResponseEntity.ok().build();
            }).orElseGet( () -> ResponseEntity.notFound().build());
     }
+
+    @GetMapping("/filtros") //buscar autores por propriedades
+    public ResponseEntity find(Autor filtro){
+        ExampleMatcher matcher = ExampleMatcher.matching().withIgnoreCase().withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING);
+        Example example = Example.of(filtro, matcher);
+
+        List<Autor> lista = autorRepository.findAll(example);
+        return ResponseEntity.ok(lista);
+    }
+
 }
