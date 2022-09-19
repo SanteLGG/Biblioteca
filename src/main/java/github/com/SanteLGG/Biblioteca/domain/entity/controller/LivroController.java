@@ -50,7 +50,6 @@ public class LivroController {
     }
 
     @PutMapping("/atualizar/{id}") //atualizar dados no bancos e dados
-    @ResponseBody
     public ResponseEntity atualizarLivro(@PathVariable Long id, @RequestBody Livro livro){
         return livroRepository.findById(id).map(livroExistente -> {
             livro.setId(livroExistente.getId());

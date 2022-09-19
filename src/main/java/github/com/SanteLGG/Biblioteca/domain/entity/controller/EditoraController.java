@@ -48,21 +48,11 @@ public class EditoraController {
     }
 
     @PutMapping("/atualizar/{id}") //atualizar dados no bancos e dados
-    @ResponseBody
     public ResponseEntity atualizarAutor(@PathVariable Long id, @RequestBody Editora editora){
         return editoraRepository.findById(id).map(autorExistente -> {
             editora.setId(autorExistente.getId());
             editoraRepository.save(editora);
             return ResponseEntity.ok().build();
         }).orElseGet( () -> ResponseEntity.notFound().build());
-    }
-
-    @GetMapping("/filtros") //buscar editoras por propriedades
-    public ResponseEntity find(Autor filtro){
-        ExampleMatcher matcher = ExampleMatcher.matching().withIgnoreCase().withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING);
-        Example example = Example.of(filtro, matcher);
-
-        List<Autor> lista = editoraRepository.findAll(example);
-        return ResponseEntity.ok(lista);
     }
 }
