@@ -1,6 +1,8 @@
 package github.com.SanteLGG.Biblioteca.domain.entity;
 
 import com.sun.istack.NotNull;
+import github.com.SanteLGG.Biblioteca.domain.entity.Autor;
+import github.com.SanteLGG.Biblioteca.domain.entity.Editora;
 
 import javax.persistence.*;
 

@@ -1,11 +1,8 @@
-package github.com.SanteLGG.Biblioteca.domain.entity.controller;
+package github.com.SanteLGG.Biblioteca.domain.controller;
 
-import github.com.SanteLGG.Biblioteca.domain.entity.Autor;
 import github.com.SanteLGG.Biblioteca.domain.entity.Editora;
-import github.com.SanteLGG.Biblioteca.domain.entity.repository.EditoraRepository;
+import github.com.SanteLGG.Biblioteca.domain.repository.EditoraRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
-import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
